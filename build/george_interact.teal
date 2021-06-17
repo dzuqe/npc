@@ -2,27 +2,27 @@
 txn ApplicationID
 int 0
 ==
-bnz l18
+bnz l22
 txn OnCompletion
 int DeleteApplication
 ==
-bnz l17
+bnz l21
 txn OnCompletion
 int UpdateApplication
 ==
-bnz l16
+bnz l20
 txn OnCompletion
 int CloseOut
 ==
-bnz l15
+bnz l19
 txn OnCompletion
 int OptIn
 ==
-bnz l14
+bnz l18
 txna ApplicationArgs 0
 byte "heal"
 ==
-bnz l11
+bnz l13
 txna ApplicationArgs 0
 byte "damage"
 ==
@@ -42,6 +42,18 @@ bz l10
 int 0
 return
 l10:
+gtxn 1 Amount
+int 5000000
+<
+gtxn 1 Receiver
+byte "george"
+app_global_get
+!=
+||
+bz l12
+int 0
+return
+l12:
 byte "health"
 byte "health"
 app_global_get
@@ -50,7 +62,7 @@ int 1
 app_global_put
 int 1
 return
-l11:
+l13:
 byte "health"
 app_global_get
 int 10
@@ -60,10 +72,22 @@ app_global_get
 int 0
 <=
 ||
-bz l13
+bz l15
 int 0
 return
-l13:
+l15:
+gtxn 1 Amount
+int 5000000
+<
+gtxn 1 Receiver
+byte "george"
+app_global_get
+!=
+||
+bz l17
+int 0
+return
+l17:
 byte "health"
 byte "health"
 app_global_get
@@ -72,26 +96,26 @@ int 1
 app_global_put
 int 1
 return
-l14:
-int 1
-return
-l15:
-int 1
-return
-l16:
-txn Sender
-byte "Creator"
-app_global_get
-==
-return
-l17:
-txn Sender
-byte "Creator"
-app_global_get
-==
-return
 l18:
-byte "Creator"
+int 1
+return
+l19:
+int 1
+return
+l20:
+txn Sender
+byte "george"
+app_global_get
+==
+return
+l21:
+txn Sender
+byte "george"
+app_global_get
+==
+return
+l22:
+byte "george"
 txn Sender
 app_global_put
 byte "health"
