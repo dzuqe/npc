@@ -1,6 +1,7 @@
 # george
 
 ## A simple NPC game character using Algorand's Stateful Contract and atomic transfers.
+![intro](intro.png)
 
 ```
 make build-tx # build contract
