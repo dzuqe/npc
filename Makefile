@@ -40,7 +40,6 @@ build:
 deploy:
 	goal app create --creator $(GEORGE_ACCOUNT) \
 		--approval-prog ./build/george_interact.teal \
-		--clear-prog ./build/clear_state.teal \
 		--local-byteslices 0 \
 		--local-ints 0 \
 		--global-byteslices 1 \
@@ -94,7 +93,7 @@ transcend-npc:
 
 # delete app
 delete:
-	goal app delete --app-id $(APP_ID) -f $(GEORGE_ACCOUNT) -d $(ALGO_PVTNET_DATA)
+	goal app delete --app-id $(APP_ID) -f $(GEORGE_ACCOUNT) -d $(ALGO_DATA)
 
 
 # ui
