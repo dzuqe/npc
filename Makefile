@@ -16,7 +16,7 @@ re: clean all
 
 clean:
 	rm -rf build
-
+	rm -f ctx gtx stx.rej stx tx1 tx2
 
 #node
 start:
